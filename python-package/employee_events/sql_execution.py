@@ -1,3 +1,6 @@
+#The code is like a set of tools for working with the employee_events.db database
+#we will be to get results in two formats Dataframe and list of tuples for raw sql results
+
 from sqlite3 import connect
 from pathlib import Path
 from functools import wraps
@@ -5,7 +8,7 @@ import pandas as pd
 
 # Using pathlib, create a `db_path` variable
 # that points to the absolute path for the `employee_events.db` file
-#### YOUR CODE HERE
+db_path = Path("python-package/employee_events/employee_events.db").absolute()
 
 
 # OPTION 1: MIXIN
@@ -16,14 +19,20 @@ class QueryMixin:
     # that receives an sql query as a string
     # and returns the query's result
     # as a pandas dataframe
-    #### YOUR CODE HERE
+    def pandas_query(self, sql_query):
+        with connect(db_path) as connection:
+            return pd.read_sql_query(sql_query, connection)
 
     # Define a method named `query`
     # that receives an sql_query as a string
     # and returns the query's result as
     # a list of tuples. (You will need
     # to use an sqlite3 cursor)
-    #### YOUR CODE HERE
+    def query(self, sql_query):
+        with connect(db_path) as connection:
+            cursor = connection.cursor()
+            return cursor.execute(sql_query).fetchall()
+
     
 
  
