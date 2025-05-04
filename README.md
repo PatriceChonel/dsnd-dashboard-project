@@ -29,6 +29,11 @@ By installing my `patrice_chonel` package and its dependencies, you will be able
 📅 **May 3rd, 2025**
 
 
+### Screenshots
+![image](https://github.com/user-attachments/assets/5ed93c30-b839-4d07-9244-fb37a42597e5)
+![image](https://github.com/user-attachments/assets/b809f728-6814-47b2-8bca-4e6e8733fc90)
+![image](https://github.com/user-attachments/assets/093aaac3-47eb-4b0d-a78d-9923bcf5cd6d)
+
 
 ### Repository Structure
 ```
