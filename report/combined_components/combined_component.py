@@ -13,6 +13,9 @@ class CombinedComponent:
        return self.outer_div(called_children, div_args)
     
     def call_children(self, userid, model):
+        
+
+  
 
         called = []
         for child in self.children:
@@ -20,8 +23,12 @@ class CombinedComponent:
                 called.append(child())
                 
             else:
-                called.append(child(userid, model))
-        
+                 
+                result = child(userid, model)
+                
+                called.append(result)
+
+
         return called
     
     def div_args(self, userid, model):

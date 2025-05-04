@@ -8,7 +8,10 @@ import pandas as pd
 
 # Using pathlib, create a `db_path` variable
 # that points to the absolute path for the `employee_events.db` file
-db_path = Path("python-package/employee_events/employee_events.db").absolute()
+db_path = "C:/Users/chone/anaconda3/project/Advanced/dsnd-dashboard-project/python-package/employee_events/employee_events.db"
+
+
+
 
 
 # OPTION 1: MIXIN
@@ -19,19 +22,25 @@ class QueryMixin:
     # that receives an sql query as a string
     # and returns the query's result
     # as a pandas dataframe
-    def pandas_query(self, sql_query):
-        with connect(db_path) as connection:
-            return pd.read_sql_query(sql_query, connection)
+    def pandas_query(self, sql_query, params=()):
+        try:# try to run the database query and return results
+            with connect(db_path) as connection:
+                return pd.read_sql_query(sql_query, connection, params=params)# run the sql query with parameters convert results to pandas dataframe
+        except Exception as e:# if there's any error print the error message return empty dataframe if query fails
+            print(f"Error executing query: {e}")
+            return pd.DataFrame()
 
     # Define a method named `query`
     # that receives an sql_query as a string
     # and returns the query's result as
     # a list of tuples. (You will need
     # to use an sqlite3 cursor)
-    def query(self, sql_query):
-        with connect(db_path) as connection:
-            cursor = connection.cursor()
-            return cursor.execute(sql_query).fetchall()
+    def query(self, sql_query, params=()):
+        with connect(db_path) as connection:# open connection to database file
+            cursor = connection.cursor()# create cursor to interact with database
+            cursor.execute(sql_query, params)  #in my studies in Cybersecurity we learn to improve the safety by preventing any SQL injection from hackers
+            return cursor.fetchall() # get all results from query
+
 
     
 

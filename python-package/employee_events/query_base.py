@@ -12,18 +12,16 @@ class QueryBase:
 
     # Create a class attribute called `name`
     # set the attribute to an empty string
-    name = ""
+    name = ""#initialize an empty string variable called 'name'
 
     # Initialize with the database path for connecting
-    def __init__(self, db_path="python-package/employee_events/employee_events.db"):
+    def __init__(self, db_path="python-package/employee_events/employee_events.db"):#we put in parameter the path
         self.db_path = db_path  # Database file path
 
 
     # Define a `names` method that receives
     # no passed arguments
     def names(self):
-
-        
         # Return an empty list
         return []
 
@@ -34,7 +32,7 @@ class QueryBase:
     # This method should return a pandas dataframe
     def event_counts(self, id):
 
-
+       
         # QUERY 1
         # Write an SQL query that groups by `event_date`
         # and sums the number of positive and negative events
@@ -43,6 +41,7 @@ class QueryBase:
         # Use f-string formatting to set the name
         # of id columns used for joining
         # order by the event_date column
+        
         query = f"""
             SELECT event_date, 
                    SUM(positive_events) AS positive_events, 
@@ -52,6 +51,11 @@ class QueryBase:
             GROUP BY event_date
             ORDER BY event_date
         """
+        #Qyery contains the sql query it will return the date of evens, total good events, total of bad events from the table employee_events
+        #wewill filter by ID either the team id or employee id
+        # we will also group by date of event
+
+
         # Execute the query and return as DataFrame
         return pd.DataFrame(self.execute_query(query), columns=["event_date", "positive_events", "negative_events"])
 
@@ -76,11 +80,11 @@ class QueryBase:
             FROM notes
             WHERE {self.name}_id = {id}
         """
-
+        #get the date of when the note was created  and the content of teh note
         # Execute the query and return as DataFrame
-        return pd.DataFrame(self.execute_query(query), columns=["note_date", "note"])
+        return pd.DataFrame(self.execute_query(query), columns=["Note date", "Note"])
 
-    # Utility method to execute an SQL query
+    #utility method to execute an SQL query. I used it in my debugging phase
     #it will be practical this way becase it will centralized the SQL execution and employee that inherit from QueryBase can reuse this method
     def execute_query(self, query):
         try:

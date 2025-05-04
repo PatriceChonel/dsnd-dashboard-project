@@ -43,7 +43,11 @@ class MatplotlibViz(BaseComponent):
 
     @matplotlib2fasthtml
     def build_component(self, entity_id, model):
-        return self.visualization(entity_id, model)
+        result = self.visualization(model, entity_id)  #  Confirm the order of arguments!
+        return result
+
+
+
     
     
     def visualization(self, entity_id, model):
@@ -62,4 +66,3 @@ class MatplotlibViz(BaseComponent):
         for line in ax.get_lines():
             line.set_linewidth(4)
             line.set_linestyle('dashdot')
-

@@ -3,7 +3,7 @@ from pathlib import Path
 
 # Using the Path object, create a `project_root` variable
 # set to the absolute path for the root of this project directory
-project_root = Path(__file__).resolve().parent.parent  # Adjusts to the project root dynamically
+project_root = Path(__file__).resolve().parent.parent
 
  
 # Using the `project_root` variable

@@ -7,4 +7,12 @@ pandas==2.2.3
 pytest
 flake8
 ipython
+setuptools==80.1.0
+sqlite-minutils==4.0.3
+joblib==1.4.2
+fastapi==0.115.12
+uvicorn==0.34.2
+Jinja2==3.1.6
+apsw==3.49.1.0
+sqlite-utils==3.38
 #### Add text to install the python-package here
